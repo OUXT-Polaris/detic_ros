@@ -95,12 +95,12 @@ COPY --chown=user . /home/user/detic_ws/src/detic_ros
 RUN sudo apt install -y wget
 RUN sudo rosdep init && rosdep update && sudo apt update
 RUN cd ~/detic_ws/src &&\
-    source /opt/ros/noetic/setup.bash &&\
+    source /opt/ros/humble/setup.bash &&\
     wstool init &&\
     wstool merge detic_ros/rosinstall.noetic &&\
     wstool update &&\
     rosdep install --from-paths . --ignore-src -y -r &&\
-    source /opt/ros/noetic/setup.bash &&\
+    source /opt/ros/humble/setup.bash &&\
     rosdep install --from-paths . -i -r -y &&\
     cd ~/detic_ws/src/detic_ros && ./prepare.sh &&\
     cd ~/detic_ws && catkin init && catkin build
