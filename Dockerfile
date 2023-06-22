@@ -53,9 +53,12 @@ RUN sudo apt update && sudo apt install curl -y && \
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 # install ros packages
-RUN apt update && apt install -y --no-install-recommends \
-    ros-noetic-ros-core=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt update && apt install -y --no-install-recommends \
+#    ros-noetic-ros-core=1.5.0-1* \
+#    && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt upgrade && \
+    sudo apt install ros-humble-desktop && \
+    rm -rf /var/lib/apt/lists/*
 
 # install bootstrap tools
 RUN apt update && apt install --no-install-recommends -y \
@@ -65,12 +68,9 @@ RUN apt update && apt install --no-install-recommends -y \
     python3-vcstools \
     && rm -rf /var/lib/apt/lists/*
 
-# install ros packages
-RUN apt update && apt install -y --no-install-recommends \
-    ros-noetic-ros-base=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
 
-RUN apt update && apt install python3-osrf-pycommon python3-catkin-tools python3-wstool -y
+#RUN apt update && apt install python3-osrf-pycommon python3-catkin-tools python3-wstool -y
+RUN apt update && apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
 RUN apt update && apt install ros-noetic-jsk-tools -y
 RUN apt update && apt install ros-noetic-image-transport-plugins -y
 
