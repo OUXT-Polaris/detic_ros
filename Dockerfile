@@ -12,7 +12,7 @@ RUN echo 'Etc/UTC' > /etc/timezone && \
 RUN apt update 
 
 # install minimum tools:
-RUN apt install -y build-essential sudo git
+RUN apt install -y build-essential sudo git nano
 
 RUN \
   useradd user && \
