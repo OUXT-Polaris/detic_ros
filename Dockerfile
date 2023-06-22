@@ -5,8 +5,8 @@ RUN rm /etc/apt/sources.list.d/cuda.list
 
 RUN echo 'Etc/UTC' > /etc/timezone && \
     ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
-    apt-get update && \
-    apt-get install -q -y --no-install-recommends tzdata && \
+    apt update && \
+    apt install -q -y --no-install-recommends tzdata && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt update 
@@ -26,7 +26,7 @@ RUN echo 'root:root' | chpasswd
 RUN echo 'user:user' | chpasswd
 
 # install packages
-RUN apt-get update && apt-get install -q -y --no-install-recommends \
+RUN apt update && apt install -q -y --no-install-recommends \
     dirmngr \
     gnupg2 \
     && rm -rf /var/lib/apt/lists/*
@@ -44,12 +44,12 @@ ENV LC_ALL C.UTF-8
 ENV ROS_DISTRO noetic
 
 # install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     ros-noetic-ros-core=1.5.0-1* \
     && rm -rf /var/lib/apt/lists/*
 
 # install bootstrap tools
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt update && apt install --no-install-recommends -y \
     build-essential \
     python3-rosdep \
     python3-rosinstall \
@@ -57,7 +57,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     && rm -rf /var/lib/apt/lists/*
 
 # install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     ros-noetic-ros-base=1.5.0-1* \
     && rm -rf /var/lib/apt/lists/*
 
