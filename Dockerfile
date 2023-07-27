@@ -70,11 +70,11 @@ RUN apt install --no-install-recommends -y \
 
 #RUN apt update && apt install python3-osrf-pycommon python3-catkin-tools python3-wstool -y
 RUN apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
-RUN apt install ros-noetic-jsk-tools -y
+#RUN apt install ros-noetic-jsk-tools -y
 RUN apt install ros-noetic-image-transport-plugins -y
 
 # install launch/sample_detection.launch dependencies
-RUN apt install ros-noetic-jsk-pcl-ros ros-noetic-jsk-pcl-ros-utils -y
+#RUN apt install ros-noetic-jsk-pcl-ros ros-noetic-jsk-pcl-ros-utils -y
 
 WORKDIR /home/user
 
