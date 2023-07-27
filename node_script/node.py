@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from typing import Optional
 
-import rospy
+import rclpy
 from jsk_recognition_msgs.msg import LabelArray, VectorArray
 from node_config import NodeConfig
-from rospy import Publisher, Subscriber
+#from rospy import Publisher, Subscriber
 from sensor_msgs.msg import Image
 from wrapper import DeticWrapper
 
