@@ -46,7 +46,7 @@ RUN sudo apt install software-properties-common && \
 
 # setup keys
 #RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-RUN sudo apt update && sudo apt install curl -y && \
+RUN sudo apt install curl -y && \
     sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
 # add to source list
@@ -56,12 +56,11 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/r
 #RUN apt update && apt install -y --no-install-recommends \
 #    ros-noetic-ros-core=1.5.0-1* \
 #    && rm -rf /var/lib/apt/lists/*
-RUN apt update && apt upgrade && \
-    sudo apt install ros-humble-desktop && \
+RUN sudo apt install ros-humble-desktop && \
     rm -rf /var/lib/apt/lists/*
 
 # install bootstrap tools
-RUN apt update && apt install --no-install-recommends -y \
+RUN apt install --no-install-recommends -y \
     build-essential \
     python3-rosdep \
     python3-rosinstall \
@@ -70,12 +69,12 @@ RUN apt update && apt install --no-install-recommends -y \
 
 
 #RUN apt update && apt install python3-osrf-pycommon python3-catkin-tools python3-wstool -y
-RUN apt update && apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
-RUN apt update && apt install ros-noetic-jsk-tools -y
-RUN apt update && apt install ros-noetic-image-transport-plugins -y
+RUN apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
+RUN apt install ros-noetic-jsk-tools -y
+RUN apt install ros-noetic-image-transport-plugins -y
 
 # install launch/sample_detection.launch dependencies
-RUN apt update && apt install ros-noetic-jsk-pcl-ros ros-noetic-jsk-pcl-ros-utils -y
+RUN apt install ros-noetic-jsk-pcl-ros ros-noetic-jsk-pcl-ros-utils -y
 
 WORKDIR /home/user
 
@@ -113,5 +112,6 @@ RUN echo "source ~/detic_ws/devel/setup.bash" >> ~/.bashrc
 RUN echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 
 RUN pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+RUN sudo apt update && sudo apt upgrade
 
 CMD ["bash"]
