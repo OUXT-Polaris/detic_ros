@@ -69,7 +69,8 @@ RUN apt install --no-install-recommends -y \
 
 
 #RUN apt update && apt install python3-osrf-pycommon python3-catkin-tools python3-wstool -y
-RUN apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
+#RUN apt install python3-osrf-pycommon python3-colcon-common-extensions python3-wstool -y
+RUN apt install python3-osrf-pycommon python3-colcon-common-extensions -y
 #RUN apt install ros-noetic-jsk-tools -y
 RUN apt install ros-noetic-image-transport-plugins -y
 
@@ -95,9 +96,9 @@ RUN sudo apt install -y wget
 RUN sudo rosdep init && rosdep update && sudo apt update
 RUN cd ~/detic_giws/src &&\
     source /opt/ros/humble/setup.bash &&\
-    wstool init &&\
+    #wstool init &&\
     #wstool merge detic_ros/rosinstall.noetic &&\
-    wstool update &&\
+    #wstool update &&\
     rosdep install --from-paths . --ignore-src -y -r &&\
     source /opt/ros/humble/setup.bash &&\
     rosdep install --from-paths . -i -r -y &&\
