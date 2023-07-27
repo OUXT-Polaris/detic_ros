@@ -63,7 +63,7 @@ RUN sudo apt install ros-humble-desktop && \
 RUN apt install --no-install-recommends -y \
     build-essential \
     python3-rosdep \
-    python3-rosinstall \
+    #python3-rosinstall \
     python3-vcstools \
     && rm -rf /var/lib/apt/lists/*
 
@@ -93,10 +93,10 @@ RUN mkdir -p ~/detic_ws/src
 COPY --chown=user . /home/user/detic_ws/src/detic_ros
 RUN sudo apt install -y wget
 RUN sudo rosdep init && rosdep update && sudo apt update
-RUN cd ~/detic_ws/src &&\
+RUN cd ~/detic_giws/src &&\
     source /opt/ros/humble/setup.bash &&\
     wstool init &&\
-    wstool merge detic_ros/rosinstall.noetic &&\
+    #wstool merge detic_ros/rosinstall.noetic &&\
     wstool update &&\
     rosdep install --from-paths . --ignore-src -y -r &&\
     source /opt/ros/humble/setup.bash &&\
