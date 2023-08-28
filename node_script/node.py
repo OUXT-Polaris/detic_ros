@@ -2,6 +2,8 @@
 from typing import Optional
 
 import rclpy
+import sys
+import random
 from jsk_recognition_msgs.msg import LabelArray, VectorArray
 from node_config import NodeConfig
 #from rospy import Publisher, Subscriber
@@ -109,6 +111,16 @@ class DeticRosNode:
 
 
 if __name__ == '__main__':
-    rospy.init_node('detic_node', anonymous=True)
+    # initialize
+    #rospy.init_node('detic_node', anonymous=True)
+    rclpy.init(args=sys.argv)
+
+    node_name = 'detic_node' + '_' + str(random.randint(10000,99999))
+    node = rclpy.create_node(node_name, allow_undeclared_parameters=True, automatically_declare_parameters_from_overrides=True)
+
+    logger = node.get_logger()
+    clock = node.get_clock()
+    rclpy.logging.set_logger_level(logger.name, rclpy.logging.LoggingSeverity.INFO)
+
     node = DeticRosNode()
     rospy.spin()
